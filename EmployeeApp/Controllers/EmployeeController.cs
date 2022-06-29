@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using EmployeeApp.Data;
 using EmployeeApp.Models;
 using Microsoft.AspNetCore.Http;
@@ -101,7 +98,7 @@ namespace EmployeeApp.Controllers
             return Ok("Employee record deleted successfully");
         }
 
-        [HttpPost("employee/Update/{id}")]
+        [HttpPost("employee/[action]/{id}")]
         public IActionResult Update(int id, [FromBody]Employee employee)
         {
             if (!EmployeeData.EmployeeList.Any(x => x.EmployeeID.Equals(id)))
