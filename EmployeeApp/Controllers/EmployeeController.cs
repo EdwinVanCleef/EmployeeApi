@@ -12,6 +12,7 @@ namespace EmployeeApp.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
+        private const string _employeeNameRequiredMessage = "Employee name is required";
         private const string _employeeNotFoundMessage = "Employee not found";
         private const string _employeeNotExistMessage = "Employee does not exist";
 
@@ -53,7 +54,7 @@ namespace EmployeeApp.Controllers
         public IActionResult SearchByName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-                return NotFound("Employee name is required");
+                return NotFound(_employeeNameRequiredMessage);
 
             var employeeList = EmployeeData.EmployeeList.Where(
                 x => x.EmployeeName.ToUpper().Equals(name.ToUpper()));
@@ -68,7 +69,7 @@ namespace EmployeeApp.Controllers
         public IActionResult Search(int id, string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-                return NotFound("Employee name is required");
+                return NotFound(_employeeNameRequiredMessage);
 
             var employeeList = EmployeeData.EmployeeList.Where(
                 x => x.EmployeeName.ToUpper().Equals(name.ToUpper())
